@@ -1,8 +1,12 @@
+
 public class ThreadAssignment {
 
     static class Counter {
         void count() {
-            //todo implement me
+            for (int i=350 ;i>=1;i--){
+                System.out.println(i);
+            }
+            System.out.println("FINISH !");
         }
     }
 
@@ -15,7 +19,10 @@ public class ThreadAssignment {
 
         @Override
         public void run() {
-            counter.count();
+            synchronized (counter) {
+                counter.count();
+            }        System.out.println("DONE !");
+
         }
     }
 
