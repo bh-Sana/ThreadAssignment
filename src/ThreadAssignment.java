@@ -1,4 +1,3 @@
-
 public class ThreadAssignment {
 
     static class Counter {
@@ -21,7 +20,7 @@ public class ThreadAssignment {
         public void run() {
             synchronized (counter) {
                 counter.count();
-            }        System.out.println("DONE !");
+            }
 
         }
     }
@@ -29,7 +28,20 @@ public class ThreadAssignment {
     public static void main(String[] args) {
         Counter counter = new Counter();
 
-        new MyThread(counter).start();
-        new MyThread(counter).start();
+        MyThread t1 =new MyThread(counter);
+        t1.start();
+        MyThread t2 =new MyThread(counter);
+        t2.start();
+        try {
+            t1.join();
+            t2.join();
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        System.out.println("DONE !");
+
     }
 }
